@@ -3,6 +3,7 @@ lib/
 lib64
 pyvenv.cfg
 share/
+include/
 test.txt
 *.vrt
 *.xml
