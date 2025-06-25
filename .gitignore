@@ -3,7 +3,7 @@ lib/
 lib64
 pyvenv.cfg
 share/
-*.txt
+test.txt
 *.vrt
 
 Stanza_Beginners_Guide.ipynb
