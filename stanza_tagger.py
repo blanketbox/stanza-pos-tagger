@@ -3,9 +3,6 @@ import sys
 import re
 from timeit import default_timer as timer
 
-# print("Downloading English model...")
-# stanza.download('en', verbose=False)
-
 # start timing code execution
 start = timer()
 
@@ -38,13 +35,13 @@ parts = re.findall(r'(<[^>]+>)|([^<]+)', content)
 with open(output_file, "w", encoding="utf-8") as out:
     for tag, text in parts:
         if tag:
-            # it's an XML tag, write it unchanged
+            # it's an XML tag, so write it unchanged
             out.write(tag + "\n")
         elif text:
-            # it's text content, lemmatize, clean and write
+            # it's text content, so lemmatize, clean and write
             doc = nlp(text)
 
-            for sentence in doc.sentences: 
+            for sentence in doc.sentences:
                 for word in sentence.words:
                     out.write("{}\t{}\t{}\t{}\n".format(word.text, word.pos, word.xpos, word.lemma.lower()))
 
