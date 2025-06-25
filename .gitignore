@@ -5,6 +5,7 @@ pyvenv.cfg
 share/
 test.txt
 *.vrt
+*.xml
 
 Stanza_Beginners_Guide.ipynb
 notes.py
