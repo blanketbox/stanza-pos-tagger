@@ -50,13 +50,12 @@ with open(output_file, "w", encoding="utf-8") as out:
                     out.write("{}\t{}\t{}\t{}\n".format(word.text, word.pos, word.xpos, word.lemma.lower()))
 
 """ 
-stanza will print each token, the corresponding Penn Treebank tag (xpos),
-the Universal Dependencies tag (pos) and
-the lemma (lemma) in all lowercase letters for everything that is not whitespace
-on a new line 
+stanza will print each token, the Universal Dependencies tag (pos), 
+the corresponding Penn Treebank tag (xpos), and the lemma (lemma) 
+in all lowercase letters on a new line 
 """
 
-print(f"Lemmatized text written to '{output_file}'.")
+print("Lemmatized text written to '{}'.".format(output_file))
 
 # end timing code execution
 end = timer()
