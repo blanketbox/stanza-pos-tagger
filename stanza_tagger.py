@@ -11,14 +11,14 @@ print("Loading language model...")
 nlp = stanza.Pipeline("en", processors="tokenize, lemma, pos", verbose=False)
 
 
-# input file 
+# input file
 input_file = sys.argv[1]
 
 # if the output file has not been specified, the default name will be the name of the input file with the file ending vrt
 if len(sys.argv) < 3:
     name, ext = os.path.splitext(input_file)
     output_file = name + ".vrt"
-else: 
+else:
     output_file = sys.argv[2]
 
 
@@ -45,7 +45,8 @@ with open(output_file, "w", encoding="utf-8") as out:
 
             for sentence in doc.sentences:
                 for word in sentence.words:
-                    out.write(f"{word.text}\t{word.xpos}\t{word.pos}\t{word.lemma.lower()}\n")
+                    out.write(
+                        f"{word.text}\t{word.xpos}\t{word.pos}\t{word.lemma.lower()}\n")
 
 """ 
 stanza will print each token, the Penn Treebank tag (xpos), 
@@ -53,7 +54,7 @@ the corresponding Universal Dependencies tag (pos) and the lemma (lemma)
 in all lowercase letters on a new line 
 """
 
-print("Lemmatized text written to '{}'.".format(output_file))
+print(f"Lemmatized text written to {output_file}.")
 
 # end timing code execution
 end = timer()
@@ -61,4 +62,4 @@ end = timer()
 # calculate execution time and convert to minutes
 exec_time = (end - start)/60
 
-print("Code executed in " + str(round(exec_time, 2)) + " minutes.")
+print(f"Code executed in {str(round(exec_time, 2))} minutes.")
