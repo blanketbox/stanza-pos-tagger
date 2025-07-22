@@ -1,6 +1,7 @@
 import stanza
 import sys
 import re
+import os
 from timeit import default_timer as timer
 
 # start timing code execution
@@ -15,7 +16,8 @@ input_file = sys.argv[1]
 
 # if the output file has not been specified, the default name will be the name of the input file with the file ending vrt
 if len(sys.argv) < 3:
-    output_file = "{}.vrt".format(sys.argv[1][:-4])
+    name, ext = os.path.splitext(input_file)
+    output_file = name + ".vrt"
 else: 
     output_file = sys.argv[2]
 
