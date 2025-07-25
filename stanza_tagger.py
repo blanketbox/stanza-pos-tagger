@@ -32,10 +32,10 @@ with open(input_file, "r", encoding="utf-8") as f:
 # group 1: XML tags, group 2: non-tag text
 parts = re.findall(r'(<[^>]+>)|([^<]+)', content)
 
-# print(parts)
 
 with open(output_file, "w", encoding="utf-8") as out:
     for tag, text in parts:
+        print(tag, text)
         if tag:
             # it's an XML tag, so write it unchanged
             out.write(tag + "\n")
