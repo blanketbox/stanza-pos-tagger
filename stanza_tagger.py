@@ -59,7 +59,6 @@ def tag_tokens(output_file):
 
 tag_tokens(output_file=output_file)
 
-
 print(f"Lemmatized text written to {output_file}.")
 
 # end timing code execution
