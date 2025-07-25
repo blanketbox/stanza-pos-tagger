@@ -28,31 +28,37 @@ print("Annotating...")
 with open(input_file, "r", encoding="utf-8") as f:
     content = f.read()
 
-# pattern to split XML tags and non-tags
-# group 1: XML tags, group 2: non-tag text
-parts = re.findall(r'(<[^>]+>)|([^<]+)', content)
+
+def tag_tokens(output_file): 
+    # pattern to split XML tags and non-tags
+    # group 1: XML tags, group 2: non-tag text
+    parts = re.findall(r'(<[^>]+>)|([^<]+)', content)
 
 
-with open(output_file, "w", encoding="utf-8") as out:
-    for tag, text in parts:
-        print(tag, text)
-        if tag:
-            # it's an XML tag, so write it unchanged
-            out.write(tag + "\n")
-        elif text:
-            # it's text content, so lemmatize, clean and write
-            doc = nlp(text)
+    with open(output_file, "w", encoding="utf-8") as out:
+        for tag, text in parts:
+            # print(tag, text)
+            if tag:
+                # it's an XML tag, so write it unchanged
+                out.write(tag + "\n")
+            elif text:
+                # it's text content, so lemmatize, clean and write
+                doc = nlp(text)
 
-            for sentence in doc.sentences:
-                for word in sentence.words:
-                    out.write(
-                        f"{word.text}\t{word.xpos}\t{word.pos}\t{word.lemma.lower()}\n")
+                for sentence in doc.sentences:
+                    for word in sentence.words:
+                        out.write(
+                            f"{word.text}\t{word.xpos}\t{word.pos}\t{word.lemma.lower()}\n")
 
-""" 
-stanza will print each token, the Penn Treebank tag (xpos), 
-the corresponding Universal Dependencies tag (pos) and the lemma (lemma) 
-in all lowercase letters on a new line 
-"""
+    """ 
+    stanza will print each token, the Penn Treebank tag (xpos), 
+    the corresponding Universal Dependencies tag (pos) and the lemma (lemma) 
+    in all lowercase letters on a new line 
+    """
+
+
+tag_tokens(output_file=output_file)
+
 
 print(f"Lemmatized text written to {output_file}.")
 
