@@ -24,16 +24,16 @@ else:
 
 print("Annotating...")
 
-# Read the input file
-with open(input_file, "r", encoding="utf-8") as f:
-    content = f.read()
 
+def tag_file(input_file, output_file):
 
-def tag_tokens(output_file): 
+    # Read the input file
+    with open(input_file, "r", encoding="utf-8") as f:
+        content = f.read()
+
     # pattern to split XML tags and non-tags
     # group 1: XML tags, group 2: non-tag text
     parts = re.findall(r'(<[^>]+>)|([^<]+)', content)
-
 
     with open(output_file, "w", encoding="utf-8") as out:
         for tag, text in parts:
@@ -55,11 +55,10 @@ def tag_tokens(output_file):
     the corresponding Universal Dependencies tag (pos) and the lemma (lemma) 
     in all lowercase letters on a new line 
     """
+    return f"Lemmatized text written to {output_file}."
 
 
-tag_tokens(output_file=output_file)
-
-print(f"Lemmatized text written to {output_file}.")
+print(tag_file(input_file=input_file, output_file=output_file))
 
 # end timing code execution
 end = timer()
